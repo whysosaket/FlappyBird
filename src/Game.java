@@ -126,7 +126,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()){
-            case 32 -> {
+            case 32 -> {    // SPACE
                 if (play) {
                     isFalling = false;
                     newFlyHeight = bird.getY() - 50;
@@ -134,7 +134,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
                 }
             }
 
-            case 10 -> {
+            case 10 -> {    // ENTER
                 if (!play) startGame();
             }
         }
