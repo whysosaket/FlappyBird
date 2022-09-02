@@ -145,7 +145,6 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
     }
 
-
     // Game Methods
     void fly(){
         if(isFlying&&bird.getY()>newFlyHeight){
@@ -198,12 +197,10 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
         int randomX=random.nextInt(1100, 2500);
         for (int i = 0; i < poleArray.length; i++) {
-            //if(poleUp==poleArray[i][0]) continue;
             while (new Rectangle(randomX, 0, 180,1700).intersects(poleArray[i][0].getBounds()) || new Rectangle(poleArray[i][0].getX(), poleArray[i][0].getY()+180, poleArray[i][0].getWidth(), poleArray[i][0].getHeight()).intersects(new Rectangle(randomX, 0, 220,1700))){
                 randomX=random.nextInt(1100, 2200);
             }
         }
-        System.out.println(poleArray[0][0].getX()+"   "+poleArray[1][0].getX()+"    "+poleArray[2][0].getX());
 
         int randomY = random.nextInt(630,730);
         int randY = random.nextInt(-350,-50);
@@ -261,7 +258,6 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         pointX=940;
 
         // Setting Poles,
-
         for (int i = 0; i < poleArray.length; i++) {
             setPoles(poleArray[i][0], poleArray[i][1]);
         }
