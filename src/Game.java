@@ -195,16 +195,15 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
     void setPoles(JLabel poleUp, JLabel poleDown){
 
-        int randomX=random.nextInt(1100, 2500);
+        int randomX=random.nextInt(1100, 2000);
         for (int i = 0; i < poleArray.length; i++) {
-            while (new Rectangle(randomX, 0, 180,1700).intersects(poleArray[i][0].getBounds()) || new Rectangle(poleArray[i][0].getX(), poleArray[i][0].getY()+180, poleArray[i][0].getWidth(), poleArray[i][0].getHeight()).intersects(new Rectangle(randomX, 0, 220,1700))){
-                randomX=random.nextInt(1100, 2200);
+            if(poleUp==poleArray[i][0]) continue;
+            while ((poleUp!=poleArray[0][0] && (new Rectangle(randomX, 0, 200,1700).intersects(poleArray[0][0].getBounds()) || new Rectangle(poleArray[0][0].getX(), poleArray[i][0].getY(), 200, poleArray[0][0].getHeight()).intersects(new Rectangle(randomX, 0, 220,1700)))) || (poleUp!=poleArray[1][0] && ( new Rectangle(randomX, 0, 200,1700).intersects(poleArray[1][0].getBounds()) || new Rectangle(poleArray[1][0].getX(), poleArray[i][0].getY(), 200, poleArray[i][0].getHeight()).intersects(new Rectangle(randomX, 0, 220,1700)))) || (poleUp!=poleArray[2][0] && ( new Rectangle(randomX, 0, 200,1700).intersects(poleArray[2][0].getBounds()) || new Rectangle(poleArray[2][0].getX(), poleArray[i][0].getY(), 200, poleArray[i][0].getHeight()).intersects(new Rectangle(randomX, 0, 220,1700))))){
+                randomX=random.nextInt(1100, 2000);
             }
         }
-
         int randomY = random.nextInt(630,730);
         int randY = random.nextInt(-350,-50);
-
         poleDown.setBounds(randomX, randY,poleDown.getWidth(),poleDown.getHeight());
         poleUp.setBounds(randomX, randY+randomY,poleUp.getWidth(),poleUp.getHeight());
     }
@@ -233,6 +232,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     void fallAnimation(){
         bird.setIcon(birdDownImage);
         isFalling=true;
+        gameTimer.setDelay(2);
         fall();
         if(bird.getX()<220) bird.setBounds(bird.getX()+1,bird.getY(),bird.getWidth(),bird.getHeight());
     }
@@ -256,6 +256,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         points=0;
         prevDig=1;
         pointX=940;
+        gameTimer.setDelay(5);
 
         // Setting Poles,
         for (int i = 0; i < poleArray.length; i++) {
